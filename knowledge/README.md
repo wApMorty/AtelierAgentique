@@ -8,7 +8,7 @@ Ordre de lecture conseillé. Les liens apparaissent à mesure que les chapitres 
 | 02 | [Ingénierie du contexte](02-ingenierie-du-contexte.md) | Maîtriser ce qui entre dans la fenêtre de contexte : chargement à la demande, compaction, mémoire externe | Brouillon |
 | 03 | [Prompting pour agents](03-prompting-pour-agents.md) | Écrire des instructions, AGENTS.md, specs et prompts de tâche qui tiennent sur la durée | Brouillon |
 | 04 | [Outils et MCP](04-outils-et-mcp.md) | Concevoir et choisir des outils ; protocole MCP et ses risques | Brouillon |
-| 05 | Skills | Concevoir des skills : chargement progressif, déclenchement, standard ouvert | À rédiger |
+| 05 | [Skills](05-skills.md) | Concevoir des skills : chargement progressif, déclenchement, standard ouvert | Brouillon |
 | 06 | Subagents et orchestration | Savoir quand déléguer, isoler le contexte et paralléliser sans conflit | À rédiger |
 | 07 | Hooks et garde-fous | Imposer de façon déterministe ce qui ne souffre pas d'exception | À rédiger |
 | 08 | [Workflows de développement](08-workflows-developpement.md) | Choisir et pratiquer un workflow : spec, plan, TDD, revue | Brouillon |
