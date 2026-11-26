@@ -10,7 +10,7 @@ Ordre de lecture conseillé. Les liens apparaissent à mesure que les chapitres 
 | 04 | [Outils et MCP](04-outils-et-mcp.md) | Concevoir et choisir des outils ; protocole MCP et ses risques | Brouillon |
 | 05 | [Skills](05-skills.md) | Concevoir des skills : chargement progressif, déclenchement, standard ouvert | Brouillon |
 | 06 | [Subagents et orchestration](06-subagents-et-orchestration.md) | Savoir quand déléguer, isoler le contexte et paralléliser sans conflit | Brouillon |
-| 07 | Hooks et garde-fous | Imposer de façon déterministe ce qui ne souffre pas d'exception | À rédiger |
+| 07 | [Hooks et garde-fous](07-hooks-et-garde-fous.md) | Imposer de façon déterministe ce qui ne souffre pas d'exception | Brouillon |
 | 08 | [Workflows de développement](08-workflows-developpement.md) | Choisir et pratiquer un workflow : spec, plan, TDD, revue | Brouillon |
 | 09 | Vérification et évaluation | Produire des preuves : tests, revue indépendante, évaluation d'agents | À rédiger |
 | 10 | Sécurité | Prompt injection, permissions, sandbox, secrets, chaîne d'approvisionnement | À rédiger |
