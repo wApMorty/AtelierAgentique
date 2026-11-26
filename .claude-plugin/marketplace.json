@@ -1,0 +1,20 @@
+{
+  "name": "atelier-agentique",
+  "description": "Système de développement agentique : workflow outillé et garde-fous, justifiés par une base de connaissances sourcée.",
+  "owner": {
+    "name": "wApMorty",
+    "url": "https://github.com/wApMorty"
+  },
+  "plugins": [
+    {
+      "name": "workflow",
+      "source": "./plugins/workflow",
+      "description": "Workflow de développement agentique : cadrer, planifier, implémenter, vérifier, relire."
+    },
+    {
+      "name": "garde-fous",
+      "source": "./plugins/garde-fous",
+      "description": "Hooks de garde-fous : commandes destructrices, secrets, formatage et vérifications avant fin de tâche."
+    }
+  ]
+}

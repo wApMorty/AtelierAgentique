@@ -1,0 +1,13 @@
+{
+  "name": "garde-fous",
+  "version": "0.1.0",
+  "description": "Hooks de garde-fous : commandes destructrices, secrets, formatage et vérifications avant fin de tâche.",
+  "author": {
+    "name": "wApMorty",
+    "url": "https://github.com/wApMorty"
+  },
+  "homepage": "https://github.com/wApMorty/AtelierAgentique/tree/main/plugins/garde-fous",
+  "repository": "https://github.com/wApMorty/AtelierAgentique",
+  "license": "MIT",
+  "keywords": ["hooks", "securite", "qualite"]
+}

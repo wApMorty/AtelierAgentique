@@ -1,0 +1,13 @@
+{
+  "name": "workflow",
+  "version": "0.1.0",
+  "description": "Workflow de développement agentique : cadrer, planifier, implémenter, vérifier, relire.",
+  "author": {
+    "name": "wApMorty",
+    "url": "https://github.com/wApMorty"
+  },
+  "homepage": "https://github.com/wApMorty/AtelierAgentique/tree/main/plugins/workflow",
+  "repository": "https://github.com/wApMorty/AtelierAgentique",
+  "license": "MIT",
+  "keywords": ["workflow", "spec", "tdd", "revue"]
+}
