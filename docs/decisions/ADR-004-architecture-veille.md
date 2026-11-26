@@ -13,6 +13,7 @@ La base de connaissances porte sur un domaine qui évolue chaque semaine. Une ve
 
 - **Méthode** : un skill de projet `.claude/skills/veille/SKILL.md`, invocable en local par `/veille`. La tâche planifiée ne contient pas la méthode ; elle invoque le skill. Ce partage « le skill définit la méthode, la planification définit le moment » est aussi celui que recommande OpenAI [5].
 - **Planification** : une tâche planifiée cloud Claude Code, hebdomadaire. Elle est disponible sur l'offre Pro et chaque exécution ouvre une session complète, consultable après coup [1].
+- **Collecte déterministe** : un script sans dépendance, `veille/collecter.py`, interroge chaque source (flux Atom ou RSS, page, API), écarte ce qui est déjà vu ou hors fenêtre, et renvoie un JSON compact de candidats. Le modèle ne lit que ces candidats et n'approfondit que les éléments retenus. La collecte ne coûte ainsi aucun token, conformément au rôle des scripts dans un skill (voir `knowledge/05-skills.md`).
 - **État** : `veille/state.json` conserve la date de dernière exécution et les identifiants (URL) des éléments déjà traités, purgés au-delà de 90 jours.
 - **Sortie** : `veille/digests/AAAA-Sxx.md` (semaine ISO) et, le cas échéant, des modifications de `knowledge/`.
 
@@ -41,13 +42,15 @@ Les offres Pro ont une limite par fenêtre de cinq heures et une limite hebdomad
 
 | Paramètre | Plafond |
 |---|---|
-| Sources dans `sources.yaml` | 25 |
-| Requêtes web par exécution | 40 |
+| Sources dans `sources.yaml` | 25 (vérifié par un test) |
+| Requêtes de collecte | 1 par source, par le script, sans coût en tokens |
+| Candidats par source | 10 |
+| Lectures d'approfondissement par le modèle | 15 |
 | Nouveautés retenues dans le digest | 10 |
 | Chapitres modifiés par PR | 3 |
 | Subagents | aucun ; exécution séquentielle dans le contexte principal |
 
-Sources consultées de préférence par flux RSS/Atom ou page de changelog, une seule requête par source sauf nouveauté à approfondir.
+Mesure de l'essai à blanc du 2026-11-27 (fenêtre de 14 jours) : 25 requêtes, 62 candidats, un JSON d'environ 27 Ko soit de l'ordre de 7 000 tokens, 7 nouveautés retenues pour 2 lectures d'approfondissement (`veille/digests/2026-S48.md`). Une semaine ordinaire, avec un état déjà enregistré, produira moins de candidats.
 
 ## Alternatives écartées
 
@@ -59,8 +62,9 @@ Sources consultées de préférence par flux RSS/Atom ou page de changelog, une 
 
 ## Incertitudes
 
-- **Consommation réelle d'une exécution** : inconnue faute de chiffres publiés [4]. Le premier essai à blanc sera mesuré (`/usage`) et les plafonds ajustés.
-- **Déclenchement du workflow de notification** : une PR ouverte avec le `GITHUB_TOKEN` d'Actions ne déclenche pas d'autres workflows ; une PR ouverte par l'identité de l'application GitHub de Claude devrait le faire. **À vérifier** en phase 4.
+- **Consommation réelle d'une exécution cloud** : inconnue faute de chiffres publiés [4] ; à mesurer (`/usage`) lors de la première exécution planifiée, puis ajuster les plafonds.
+- **Déclenchement du workflow de notification** : une PR ouverte avec le `GITHUB_TOKEN` d'Actions ne déclenche pas d'autres workflows ; une PR ouverte par l'identité de l'application GitHub de Claude devrait le faire. **Non vérifié** tant que la tâche n'a pas tourné.
+- **TLS en local** : lors de l'essai à blanc sous Windows, sept sources ont échoué à la vérification des certificats par l'interpréteur Python local, alors que `curl` les atteint ; défaut probable du magasin de certificats local, sans effet attendu dans l'environnement cloud Linux. La vérification TLS n'est jamais désactivée.
 - **Liste blanche réseau des tâches planifiées** : documentée pour les environnements cloud [2] ; son application identique aux tâches planifiées est à confirmer [1].
 - Le statut « research preview » des tâches planifiées implique que leur comportement peut changer [1].
 
