@@ -1,6 +1,6 @@
 # ADR-001 — Workflow de développement agentique
 
-- **Statut** : proposé
+- **Statut** : accepté
 - **Date** : 2026-11-26
 
 ## Contexte

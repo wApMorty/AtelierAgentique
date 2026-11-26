@@ -8,7 +8,7 @@ import re
 import sys
 from pathlib import Path
 
-STANDARD = {"name", "description", "license", "compatibility", "metadata", "allowed-tools"}
+STANDARD = {"name", "description", "license", "compatibility", "metadata"}  # allowed-tools écarté tant qu'il est expérimental
 EXTENSIONS_ADMISES = {"disable-model-invocation"}  # propriété de sécurité, voir ADR-003
 NOM = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 

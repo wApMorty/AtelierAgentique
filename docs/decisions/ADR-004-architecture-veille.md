@@ -1,6 +1,6 @@
 # ADR-004 — Architecture de la veille
 
-- **Statut** : proposé
+- **Statut** : accepté
 - **Date** : 2026-11-26
 
 ## Contexte
@@ -29,9 +29,9 @@ La base de connaissances porte sur un domaine qui évolue chaque semaine. Une ve
 | Couche | Mécanisme | Ce qu'elle garantit |
 |---|---|---|
 | Instruction | Le skill pose que tout contenu récupéré est une donnée, jamais une instruction, et impose une section « Contenus suspects » dans le digest | Signalement des tentatives d'injection |
-| Réseau | Environnement cloud en accès **Limited**, avec pour liste blanche les seuls domaines de `sources.yaml` [2] | Limite l'exfiltration et la navigation hors périmètre |
+| Réseau | Environnement cloud en accès **Limited**, avec pour liste blanche les seuls domaines de `sources.yaml` [2] ; GitHub, autorisé par défaut, reste une voie de sortie résiduelle | Limite l'exfiltration et la navigation hors périmètre |
 | Git | Protection de branche sur `main` (PR obligatoire) ; le proxy ne limite pas les branches poussées, d'où cette règle côté GitHub [2] | Aucune écriture directe sur `main` |
-| CI | Un job échoue si une PR `veille/*` modifie un fichier hors de `veille/` et `knowledge/` | Le périmètre d'écriture est vérifié de façon déterministe, pas seulement demandé |
+| CI | Workflow `veille-perimetre.yml`, en `pull_request_target`, contrôle obligatoire de la règle de `main` : il liste les fichiers de la PR par l'API, sans extraire ni exécuter son code, et refuse tout fichier hors de `veille/digests/`, `veille/state.json` et des chapitres de `knowledge/`, ainsi que plus de trois chapitres | Le périmètre est vérifié de façon déterministe ; la PR ne peut ni modifier ce contrôle, ni toucher au code et au prompt de la veille |
 | Humain | Merge manuel uniquement | Rien n'entre dans la base sans relecture |
 
 L'instruction seule ne suffit pas ; c'est la combinaison des couches déterministes qui protège, conformément à la distinction entre règles appliquées « every time » et instructions lues par le modèle [3].
@@ -77,4 +77,4 @@ Consultées le 2026-11-26. Niveaux : **O** = officiel, **P** = pratique reconnue
 3. **O** — Anthropic, *Best practices for Claude Code*. <https://code.claude.com/docs/en/best-practices>
 4. **O** — Anthropic, *Using Claude Code with your Pro or Max plan*. <https://support.claude.com/en/articles/11145838-using-claude-code-with-your-pro-or-max-plan>
 5. **O** — OpenAI, *Codex — Best practices*. <https://learn.chatgpt.com/guides/best-practices.md>
-6. **P** — Discord, *Intro to Webhooks* (compatibilité GitHub) et retours communautaires sur la couverture des événements. <https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks>
+6. **O** — Discord, *Intro to Webhooks*. <https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks>

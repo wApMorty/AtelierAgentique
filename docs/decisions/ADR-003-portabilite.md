@@ -1,6 +1,6 @@
 # ADR-003 — Stratégie de portabilité multi-outils
 
-- **Statut** : proposé
+- **Statut** : accepté
 - **Date** : 2026-11-26
 
 ## Contexte

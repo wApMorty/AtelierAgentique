@@ -1,6 +1,6 @@
 # ADR-002 — Architecture du dépôt et découpage en plugins
 
-- **Statut** : proposé
+- **Statut** : accepté
 - **Date** : 2026-11-26
 
 ## Contexte
@@ -74,7 +74,7 @@ Un troisième plugin ne sera créé que si un besoin d'installation séparée ap
 
 ## Incertitudes
 
-- Lancement de Python depuis un hook sous Windows (`python`, `python3` ou `py`) : à vérifier en phase 3 ; le champ `shell` des hooks de type `command` [3] et la forme exec (`args`) sont les pistes.
+- **Tranché en phase 3** : les hooks passent par `scripts/run.sh`, qui utilise `python3` s'il fonctionne, sinon `python` (sous Windows, `python3` peut être l'alias du Microsoft Store). Cela ajoute une dépendance à `bash`, fourni par Git pour Windows et requis par Claude Code sous Windows.
 
 ## Sources
 
