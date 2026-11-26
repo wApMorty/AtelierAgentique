@@ -1,6 +1,6 @@
 """Vérifie que les skills du dépôt respectent le format Agent Skills et les extensions admises (ADR-003).
 
-Usage : python .github/scripts/verifier_skills.py
+Usage : python .github/scripts/verifier_skills.py [SKILL.md ...]   (sans argument : tous les skills du dépôt)
 Code de sortie 1 si un SKILL.md est non conforme.
 """
 
@@ -31,7 +31,9 @@ def erreurs(skill: Path) -> list[str]:
 
 
 def main() -> int:
-    skills = sorted(Path(".").glob("plugins/*/skills/*/SKILL.md")) + sorted(Path(".").glob(".claude/skills/*/SKILL.md"))
+    skills = [Path(a) for a in sys.argv[1:]] or (
+        sorted(Path(".").glob("plugins/*/skills/*/SKILL.md")) + sorted(Path(".").glob(".claude/skills/*/SKILL.md"))
+    )
     echecs = {s: e for s in skills if (e := erreurs(s))}
     for skill, liste in echecs.items():
         for e in liste:
