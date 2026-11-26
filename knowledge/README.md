@@ -18,6 +18,6 @@ Ordre de lecture conseillé. Les liens apparaissent à mesure que les chapitres 
 | 12 | [Exécution autonome](12-execution-autonome.md) | Conditions de sûreté des exécutions sans surveillance : headless, planifiées, CI | Brouillon |
 | 13 | [Portabilité et standards](13-portabilite-et-standards.md) | AGENTS.md, Agent Skills, correspondances entre Claude Code, Copilot et Codex | Brouillon |
 | 14 | [Équipe et adoption](14-equipe-et-adoption.md) | Revue selon le risque, preuves de productivité, conduite du changement | Brouillon |
-| 15 | Panorama des outils | Situer les outils et savoir les comparer | À rédiger |
+| 15 | [Panorama des outils](15-panorama-des-outils.md) | Situer les outils et savoir les comparer | Brouillon |
 
 Un glossaire accompagnera la base.
