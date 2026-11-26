@@ -16,7 +16,7 @@ Ordre de lecture conseillé. Les liens apparaissent à mesure que les chapitres 
 | 10 | [Sécurité](10-securite.md) | Prompt injection, permissions, sandbox, secrets, chaîne d'approvisionnement | Brouillon |
 | 11 | [Coûts, quotas et modèles](11-couts-quotas-modeles.md) | Arbitrer modèle, effort, subagents et cache selon le budget | Brouillon |
 | 12 | [Exécution autonome](12-execution-autonome.md) | Conditions de sûreté des exécutions sans surveillance : headless, planifiées, CI | Brouillon |
-| 13 | Portabilité et standards | AGENTS.md, Agent Skills, correspondances entre Claude Code, Copilot et Codex | À rédiger |
+| 13 | [Portabilité et standards](13-portabilite-et-standards.md) | AGENTS.md, Agent Skills, correspondances entre Claude Code, Copilot et Codex | Brouillon |
 | 14 | Équipe et adoption | Revue selon le risque, preuves de productivité, conduite du changement | À rédiger |
 | 15 | Panorama des outils | Situer les outils et savoir les comparer | À rédiger |
 
