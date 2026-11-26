@@ -9,7 +9,7 @@ Ordre de lecture conseillé. Les liens apparaissent à mesure que les chapitres 
 | 03 | [Prompting pour agents](03-prompting-pour-agents.md) | Écrire des instructions, AGENTS.md, specs et prompts de tâche qui tiennent sur la durée | Brouillon |
 | 04 | [Outils et MCP](04-outils-et-mcp.md) | Concevoir et choisir des outils ; protocole MCP et ses risques | Brouillon |
 | 05 | [Skills](05-skills.md) | Concevoir des skills : chargement progressif, déclenchement, standard ouvert | Brouillon |
-| 06 | Subagents et orchestration | Savoir quand déléguer, isoler le contexte et paralléliser sans conflit | À rédiger |
+| 06 | [Subagents et orchestration](06-subagents-et-orchestration.md) | Savoir quand déléguer, isoler le contexte et paralléliser sans conflit | Brouillon |
 | 07 | Hooks et garde-fous | Imposer de façon déterministe ce qui ne souffre pas d'exception | À rédiger |
 | 08 | [Workflows de développement](08-workflows-developpement.md) | Choisir et pratiquer un workflow : spec, plan, TDD, revue | Brouillon |
 | 09 | Vérification et évaluation | Produire des preuves : tests, revue indépendante, évaluation d'agents | À rédiger |
