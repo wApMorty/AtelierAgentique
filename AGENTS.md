@@ -46,6 +46,14 @@ npx markdownlint-cli2 "**/*.md"
 # Vérification des liens (nécessite lychee)
 lychee --config lychee.toml "**/*.md"
 
+# Tests Python (hooks, collecteur de veille) et format des skills
+python -m unittest discover -s plugins/garde-fous/tests
+python -m unittest discover -s veille -p "test_*.py"
+python .github/scripts/verifier_skills.py
+
+# Collecte de veille (sans écriture)
+python veille/collecter.py
+
 # Validation du marketplace et des plugins
 npx @anthropic-ai/claude-code plugin validate --strict .
 npx @anthropic-ai/claude-code plugin validate --strict plugins/workflow

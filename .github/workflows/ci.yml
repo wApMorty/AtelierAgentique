@@ -44,7 +44,7 @@ jobs:
           done
 
   plugins:
-    name: Tests des hooks et conformité des skills
+    name: Tests Python et conformité des skills
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -53,5 +53,26 @@ jobs:
           python-version: "3.x"
       - name: Tests des hooks
         run: python -m unittest discover -s plugins/garde-fous/tests -v
+      - name: Tests du collecteur de veille
+        run: python -m unittest discover -s veille -p "test_*.py" -v
       - name: Format des skills (ADR-003)
         run: python .github/scripts/verifier_skills.py
+
+  perimetre-veille:
+    name: Périmètre des PR de veille (ADR-004)
+    if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'veille/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Seuls veille/ et knowledge/ peuvent changer
+        env:
+          BASE: ${{ github.base_ref }}
+        run: |
+          hors=$(git diff --name-only "origin/$BASE...HEAD" | grep -vE '^(veille|knowledge)/' || true)
+          if [ -n "$hors" ]; then
+            echo "::error::Fichiers modifiés hors de veille/ et knowledge/ :"
+            echo "$hors"
+            exit 1
+          fi
