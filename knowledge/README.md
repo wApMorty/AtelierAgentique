@@ -1,6 +1,6 @@
 # Base de connaissances — sommaire
 
-Ordre de lecture conseillé. Les liens apparaissent à mesure que les chapitres sont rédigés.
+Ordre de lecture conseillé. Chaque chapitre suit le [gabarit](_gabarit.md) ; l'état « Brouillon » signifie rédigé et sourcé, en attente de relecture.
 
 | # | Chapitre | Objectif | État |
 |---|---|---|---|
@@ -20,4 +20,4 @@ Ordre de lecture conseillé. Les liens apparaissent à mesure que les chapitres 
 | 14 | [Équipe et adoption](14-equipe-et-adoption.md) | Revue selon le risque, preuves de productivité, conduite du changement | Brouillon |
 | 15 | [Panorama des outils](15-panorama-des-outils.md) | Situer les outils et savoir les comparer | Brouillon |
 
-Un glossaire accompagnera la base.
+Le [glossaire](glossaire.md) définit les termes employés.
