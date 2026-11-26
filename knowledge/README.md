@@ -13,7 +13,7 @@ Ordre de lecture conseillé. Les liens apparaissent à mesure que les chapitres 
 | 07 | [Hooks et garde-fous](07-hooks-et-garde-fous.md) | Imposer de façon déterministe ce qui ne souffre pas d'exception | Brouillon |
 | 08 | [Workflows de développement](08-workflows-developpement.md) | Choisir et pratiquer un workflow : spec, plan, TDD, revue | Brouillon |
 | 09 | [Vérification et évaluation](09-verification-et-evaluation.md) | Produire des preuves : tests, revue indépendante, évaluation d'agents | Brouillon |
-| 10 | Sécurité | Prompt injection, permissions, sandbox, secrets, chaîne d'approvisionnement | À rédiger |
+| 10 | [Sécurité](10-securite.md) | Prompt injection, permissions, sandbox, secrets, chaîne d'approvisionnement | Brouillon |
 | 11 | Coûts, quotas et modèles | Arbitrer modèle, effort, subagents et cache selon le budget | À rédiger |
 | 12 | Exécution autonome | Conditions de sûreté des exécutions sans surveillance : headless, planifiées, CI | À rédiger |
 | 13 | Portabilité et standards | AGENTS.md, Agent Skills, correspondances entre Claude Code, Copilot et Codex | À rédiger |
