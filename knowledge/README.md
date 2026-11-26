@@ -4,7 +4,7 @@ Ordre de lecture conseillé. Les liens apparaissent à mesure que les chapitres 
 
 | # | Chapitre | Objectif | État |
 |---|---|---|---|
-| 01 | Fondamentaux et boucle agentique | Comprendre la boucle modèle–outils–observation, ses modes d'échec et la notion de harnais | À rédiger |
+| 01 | [Fondamentaux et boucle agentique](01-fondamentaux-boucle-agentique.md) | Comprendre la boucle modèle–outils–observation, ses modes d'échec et la notion de harnais | Brouillon |
 | 02 | [Ingénierie du contexte](02-ingenierie-du-contexte.md) | Maîtriser ce qui entre dans la fenêtre de contexte : chargement à la demande, compaction, mémoire externe | Brouillon |
 | 03 | Prompting pour agents | Écrire des instructions, AGENTS.md, specs et prompts de tâche qui tiennent sur la durée | À rédiger |
 | 04 | Outils et MCP | Concevoir et choisir des outils ; protocole MCP et ses risques | À rédiger |
