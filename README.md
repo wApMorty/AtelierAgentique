@@ -20,11 +20,11 @@ Chaque composant du système cite le chapitre qui justifie sa conception : le sy
 
 | Dossier | Contenu | État |
 |---|---|---|
-| [`knowledge/`](knowledge/) | Base de connaissances en chapitres | En cours de rédaction |
-| [`plugins/`](plugins/) | Plugins Claude Code : [`workflow`](plugins/workflow/), [`garde-fous`](plugins/garde-fous/) | Squelette |
-| [`veille/`](veille/) | Veille hebdomadaire automatisée | À venir |
-| [`labs/`](labs/) | Exercices pratiques en TypeScript/Angular et Python | À venir |
-| [`talks/`](talks/) | Gabarits et plans de présentation | À venir |
+| [`knowledge/`](knowledge/) | Base de connaissances : 15 chapitres sourcés et un glossaire | Brouillon complet, à relire |
+| [`plugins/`](plugins/) | Plugins Claude Code : [`workflow`](plugins/workflow/), [`garde-fous`](plugins/garde-fous/) | Version 0.1.0, testés |
+| [`veille/`](veille/) | Veille hebdomadaire automatisée | Prête ; tâche planifiée à créer |
+| [`labs/`](labs/) | Exercices pratiques en TypeScript/Angular et Python | 3 labs |
+| [`talks/`](talks/) | Gabarits et plans de présentation | Gabarit et skill `talk` |
 | [`docs/decisions/`](docs/decisions/) | Décisions d'architecture (ADR) | En place |
 
 ## Installer les plugins
