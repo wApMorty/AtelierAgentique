@@ -1,0 +1,31 @@
+name: Périmètre de la veille
+
+# Contrôle déterministe des PR de veille (ADR-004). Déclenché par pull_request_target : le workflow
+# exécuté est celui de la branche de base, et le code de la PR n'est jamais extrait ni exécuté ;
+# une PR ne peut donc ni modifier ni neutraliser ce contrôle. À déclarer comme contrôle obligatoire
+# dans la règle de protection de main (veille/scheduled-task.md, étape 1).
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  pull-requests: read
+
+jobs:
+  perimetre:
+    name: Périmètre des PR de veille
+    if: startsWith(github.head_ref, 'veille/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Seuls les digests, l'état et au plus trois chapitres peuvent changer
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEPOT: ${{ github.repository }}
+          NUMERO: ${{ github.event.pull_request.number }}
+        run: |
+          fichiers=$(gh api --paginate "repos/$DEPOT/pulls/$NUMERO/files" --jq '.[] | .filename, (.previous_filename // empty)' | sort -u)
+          hors=$(echo "$fichiers" | grep -vE '^(veille/digests/[^/]+\.md|veille/state\.json|knowledge/[0-9]{2}-[a-z0-9-]+\.md)$' || true)
+          chapitres=$(echo "$fichiers" | grep -cE '^knowledge/' || true)
+          echo "Fichiers modifiés :"; echo "$fichiers"
+          if [ -n "$hors" ]; then echo "::error::Fichiers hors périmètre :"; echo "$hors"; exit 1; fi
+          if [ "$chapitres" -gt 3 ]; then echo "::error::$chapitres chapitres modifiés (3 au plus)"; exit 1; fi

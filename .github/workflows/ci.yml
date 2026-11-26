@@ -58,25 +58,6 @@ jobs:
       - name: Format des skills (ADR-003)
         run: python .github/scripts/verifier_skills.py
 
-  perimetre-veille:
-    name: Périmètre des PR de veille (ADR-004)
-    if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'veille/')
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-      - name: Seuls veille/ et knowledge/ peuvent changer
-        env:
-          BASE: ${{ github.base_ref }}
-        run: |
-          hors=$(git diff --name-only "origin/$BASE...HEAD" | grep -vE '^(veille|knowledge)/' || true)
-          if [ -n "$hors" ]; then
-            echo "::error::Fichiers modifiés hors de veille/ et knowledge/ :"
-            echo "$hors"
-            exit 1
-          fi
-
   labs:
     name: Solutions des labs
     runs-on: ubuntu-latest
