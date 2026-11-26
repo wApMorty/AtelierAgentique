@@ -27,7 +27,7 @@ Claude Code est l'outil principal, mais le système doit rester réutilisable so
 
 ## Alternatives écartées
 
-- **CLAUDE.md comme source, AGENTS.md dérivé** : inverse la dépendance ; Copilot et Codex lisent AGENTS.md en priorité [5][7].
+- **CLAUDE.md comme source, AGENTS.md dérivé** : inverse la dépendance ; Copilot et Codex lisent AGENTS.md en priorité [5], [7].
 - **Réglage `claude-md-and-agents-md`** [3] : dépend d'un paramètre utilisateur, donc non reproductible pour un visiteur du dépôt.
 - **Générer les agents et hooks pour les trois outils** : trois formats à maintenir et à tester pour un usage hypothétique.
 

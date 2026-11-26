@@ -36,7 +36,7 @@ Parallélisation : réservée aux tâches indépendantes (fichiers disjoints), c
 
 - **spec-kit complet (constitution → specify → plan → tasks → implement → converge)** [3] : rigoureux, mais disproportionné pour la majorité des changements et coûteux en relecture [7]. Ses idées utiles (critères vérifiables, tâches isolables) sont reprises.
 - **Spec-as-source** (la spec est l'artefact maintenu, le code est régénéré) : encore expérimental, aucun outillage stable [7]. Suivi par la veille.
-- **Itération libre sans spec ni vérification imposée** : contredit le consensus sur la boucle de vérification [1][5][6].
+- **Itération libre sans spec ni vérification imposée** : contredit le consensus sur la boucle de vérification [1], [5], [6].
 - **Harnais lourd systématique** (multiples agents, revues en éventail à chaque changement) : son bénéfice dépend du modèle — nul pour un modèle fort, décisif pour un modèle plus faible, au prix d'environ 10 fois plus de tokens [8]. Incompatible avec un quota Pro comme réglage par défaut.
 
 ## Conséquences
@@ -47,7 +47,7 @@ Parallélisation : réservée aux tâches indépendantes (fichiers disjoints), c
 ## Incertitudes
 
 - **Gains de productivité non établis** : l'essai randomisé de METR (2025) mesurait un ralentissement de 19 % ; METR juge désormais ses propres données de suivi biaisées par des effets de sélection et « only very weak evidence » [9]. Les chiffres favorables publiés par les éditeurs sont auto-déclarés [4]. Ce workflow vise la fiabilité et la vérifiabilité, pas un gain de vitesse démontré.
-- **Le niveau de harnais optimal évolue avec les modèles** [8][10] : la proportion entre étapes « guides » et « capteurs » est à réévaluer par la veille.
+- **Le niveau de harnais optimal évolue avec les modèles** [8], [10] : la proportion entre étapes « guides » et « capteurs » est à réévaluer par la veille.
 
 ## Sources
 
