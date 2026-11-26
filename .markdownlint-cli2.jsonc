@@ -1,0 +1,13 @@
+{
+  "config": {
+    // Les paragraphes ne sont pas coupés à une largeur fixe.
+    "MD013": false,
+    // Titres identiques autorisés dans des sections différentes (gabarit de chapitre).
+    "MD024": { "siblings_only": true },
+    // Style des tables libre (lignes de séparation compactes acceptées).
+    "MD060": false,
+    // Gabarits GitHub et CLAUDE.md (import en première ligne) sans titre H1.
+    "MD041": false
+  },
+  "ignores": ["node_modules/**", "LICENSE*"]
+}
