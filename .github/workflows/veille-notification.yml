@@ -1,0 +1,24 @@
+name: Notification de veille
+
+# Prévient sur Discord à l'ouverture d'une PR de veille (ADR-004).
+# Le webhook reste dans les secrets du dépôt : il ne transite jamais par la session de veille.
+on:
+  pull_request:
+    types: [opened]
+
+permissions: {}
+
+jobs:
+  discord:
+    if: startsWith(github.head_ref, 'veille/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Poster le message
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          TITRE: ${{ github.event.pull_request.title }}
+          LIEN: ${{ github.event.pull_request.html_url }}
+        run: |
+          if [ -z "$WEBHOOK" ]; then echo "Secret DISCORD_WEBHOOK_URL absent : notification ignorée."; exit 0; fi
+          jq -n --arg c "Nouvelle PR de veille à relire : $TITRE — $LIEN" '{content: $c, allowed_mentions: {parse: []}}' \
+            | curl -fsS -H 'Content-Type: application/json' -d @- "$WEBHOOK"
