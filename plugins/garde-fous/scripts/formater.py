@@ -3,6 +3,8 @@
 Chapitre de référence : knowledge/07-hooks-et-garde-fous.md.
 N'utilise que des outils déjà installés : ruff (PATH) pour Python, prettier et eslint locaux
 au projet (node_modules/.bin) pour TypeScript et JavaScript. Rien n'est téléchargé.
+Les outils locaux sont du code fourni par le dépôt : ils ne sont lancés que si l'utilisateur a approuvé
+ce projet (approbation de verifier_fin.py), pour qu'un dépôt cloné n'exécute rien à son insu.
 Un outil absent est ignoré. Une erreur de lint renvoie le code 2 : la sortie est montrée à l'agent.
 """
 
@@ -12,6 +14,8 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
+
+from verifier_fin import projet_approuve
 
 WEB = {".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs", ".json", ".css", ".scss", ".html"}
 LINT_WEB = {".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs"}
@@ -32,6 +36,8 @@ def commandes(fichier: Path, projet: Path) -> tuple[list[list[str]], list[list[s
     if ext == ".py" and (ruff := shutil.which("ruff")):
         formatage.append([ruff, "format", "--quiet", str(fichier)])
         lint.append([ruff, "check", "--quiet", str(fichier)])
+    if not projet_approuve(projet):
+        return formatage, lint
     if ext in WEB and (prettier := _local(projet, "prettier")):
         formatage.append([prettier, "--write", "--log-level", "warn", str(fichier)])
     if ext in LINT_WEB and (eslint := _local(projet, "eslint")):

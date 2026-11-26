@@ -13,7 +13,8 @@ import sys
 from pathlib import PurePath
 
 FICHIERS = re.compile(
-    r"^(?:\.env(?:\.(?!example$|sample$|template$|exemple$)[\w.-]+)?|.*\.pem|.*\.key|id_(?:rsa|ecdsa|ed25519)(?:\.\w+)?|\.npmrc|\.pypirc|credentials)$",
+    r"^(?:\.env(?:\.(?!example$|sample$|template$|exemple$)[\w.-]+)?|\.envrc|\.netrc|.*\.(?:pem|key|p12|pfx)|"
+    r"id_(?:rsa|ecdsa|ed25519)(?:\.\w+)?|\.npmrc|\.pypirc|credentials(?:\.json)?)$",
     re.IGNORECASE,
 )
 
@@ -29,24 +30,22 @@ SECRETS = [
 ]
 
 
-def _textes(valeur):
-    """Toutes les chaînes contenues dans l'entrée de l'outil, quelle que soit sa forme."""
-    if isinstance(valeur, str):
-        yield valeur
-    elif isinstance(valeur, dict):
-        for v in valeur.values():
-            yield from _textes(v)
-    elif isinstance(valeur, list):
-        for v in valeur:
-            yield from _textes(v)
+def _textes_ecrits(tool_input: dict):
+    """Le texte qui sera écrit (Write : content ; Edit : new_string ; MultiEdit : edits[*].new_string).
+    Le texte remplacé (old_string) n'est pas analysé : retirer une clé fuitée doit rester possible."""
+    for cle in ("content", "new_string"):
+        if isinstance(tool_input.get(cle), str):
+            yield tool_input[cle]
+    for edition in tool_input.get("edits") or []:
+        if isinstance(edition, dict) and isinstance(edition.get("new_string"), str):
+            yield edition["new_string"]
 
 
 def raison(tool_input: dict) -> str | None:
     chemin = tool_input.get("file_path") or ""
     if chemin and FICHIERS.match(PurePath(chemin.replace("\\", "/")).name):
         return f"écriture dans un fichier de secrets ({PurePath(chemin).name})"
-    contenu = {k: v for k, v in tool_input.items() if k != "file_path"}
-    for texte in _textes(contenu):
+    for texte in _textes_ecrits(tool_input):
         for motif, nature in SECRETS:
             if re.search(motif, texte):
                 return f"le contenu ressemble à un secret ({nature})"
