@@ -1,0 +1,22 @@
+# Systèmes
+.DS_Store
+Thumbs.db
+
+# Dépendances et caches
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.angular/
+dist/
+
+# Secrets et réglages locaux
+.env
+.env.*
+!.env.example
+CLAUDE.local.md
+.claude/settings.local.json
+
+# Rapports locaux
+lychee/
