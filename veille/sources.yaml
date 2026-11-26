@@ -1,0 +1,214 @@
+# Sources de la veille hebdomadaire (ADR-004 : 25 sources au plus).
+# Format volontairement restreint (liste de dictionnaires plats) : lu par veille/collecter.py sans dépendance.
+#
+# type      : atom | rss | page | hn | github
+# confiance : officiel | pratique | emergent   (niveaux de la base, voir knowledge/_gabarit.md)
+# url       : {depuis} (AAAA-MM-JJ) et {depuis_ts} (horodatage Unix) sont remplacés par le début de la fenêtre
+# exclure   : expression régulière ; les éléments dont le titre correspond sont ignorés (préversions…)
+# liens     : pour type page, expression régulière des liens à surveiller ; sans « liens », seul un changement du contenu est signalé
+# Tous les domaines ci-dessous doivent figurer dans la liste blanche réseau de l'environnement cloud (veille/scheduled-task.md).
+
+- id: claude-code-releases
+  nom: Claude Code — versions
+  url: https://github.com/anthropics/claude-code/releases.atom
+  type: atom
+  categorie: changelog
+  confiance: officiel
+  justification: Notes de version de l'outil principal ; détecte les changements de format (hooks, skills, plugins).
+
+- id: claude-code-whats-new
+  nom: Claude Code — nouveautés hebdomadaires
+  url: https://code.claude.com/docs/en/whats-new
+  type: page
+  liens: /docs/en/whats-new/
+  categorie: changelog
+  confiance: officiel
+  justification: Synthèse hebdomadaire officielle, plus lisible que les notes de version.
+
+- id: claude-code-changelog
+  nom: Claude Code — changelog de la documentation
+  url: https://code.claude.com/docs/en/changelog
+  type: page
+  categorie: changelog
+  confiance: officiel
+  justification: Trace les fonctionnalités documentées ; complète les notes de version.
+
+- id: anthropic-engineering
+  nom: Anthropic — blog d'ingénierie
+  url: https://www.anthropic.com/engineering
+  type: page
+  liens: /engineering/[a-z0-9-]+/?$
+  categorie: blog-editeur
+  confiance: officiel
+  justification: Source de la plupart des articles de fond cités (contexte, outils, évaluations, multi-agents).
+
+- id: anthropic-news
+  nom: Anthropic — actualités
+  url: https://www.anthropic.com/news
+  type: page
+  liens: /news/[a-z0-9-]+/?$
+  categorie: blog-editeur
+  confiance: officiel
+  justification: Annonces de modèles et de produits qui modifient coûts, capacités et quotas.
+
+- id: claude-dev-blog
+  nom: Blog de l'équipe Claude Code
+  url: https://claude.dev/blog
+  type: page
+  liens: /blog/[a-z0-9-]+/?$
+  categorie: blog-editeur
+  confiance: officiel
+  justification: Retours d'expérience de l'équipe produit (revue de code, pratiques internes).
+
+- id: codex-releases
+  nom: OpenAI Codex — versions
+  url: https://github.com/openai/codex/releases.atom
+  type: atom
+  exclure: alpha|beta|rc
+  categorie: changelog
+  confiance: officiel
+  justification: Évolutions de Codex (AGENTS.md, skills, hooks) pour la portabilité.
+
+- id: codex-changelog
+  nom: OpenAI Codex — changelog
+  url: https://learn.chatgpt.com/docs/changelog
+  type: page
+  categorie: changelog
+  confiance: officiel
+  justification: Fonctionnalités de Codex hors CLI (cloud, tâches planifiées, plugins).
+
+- id: openai-news
+  nom: OpenAI — actualités
+  url: https://openai.com/news/rss.xml
+  type: rss
+  categorie: blog-editeur
+  confiance: officiel
+  justification: Annonces et retours d'expérience d'OpenAI (dont l'article sur l'ingénierie du harnais).
+
+- id: copilot-changelog
+  nom: GitHub Copilot — changelog
+  url: https://github.blog/changelog/label/copilot/feed/
+  type: rss
+  categorie: changelog
+  confiance: officiel
+  justification: Évolutions de Copilot (agents, skills, hooks) pour la portabilité.
+
+- id: github-blog-ia
+  nom: GitHub Blog — IA et ML
+  url: https://github.blog/ai-and-ml/feed/
+  type: rss
+  categorie: blog-editeur
+  confiance: officiel
+  justification: Articles de GitHub sur le spec-driven development et les workflows agentiques.
+
+- id: mcp-spec
+  nom: Model Context Protocol — versions de la spécification
+  url: https://github.com/modelcontextprotocol/modelcontextprotocol/releases.atom
+  type: atom
+  categorie: standard
+  confiance: officiel
+  justification: Révisions du protocole (la révision 2026-07-28 a cassé la compatibilité).
+
+- id: agent-skills-spec
+  nom: Agent Skills — dépôt de la spécification
+  url: https://github.com/agentskills/agentskills/commits/main.atom
+  type: atom
+  categorie: standard
+  confiance: officiel
+  justification: Évolutions du format de skills suivi par les plugins.
+
+- id: agents-md
+  nom: AGENTS.md — dépôt du standard
+  url: https://github.com/agentsmd/agents.md/commits/main.atom
+  type: atom
+  categorie: standard
+  confiance: officiel
+  justification: Évolutions du standard d'instructions et de sa gouvernance.
+
+- id: spec-kit
+  nom: GitHub spec-kit — versions
+  url: https://github.com/github/spec-kit/releases.atom
+  type: atom
+  categorie: outil
+  confiance: officiel
+  justification: Outil de référence du spec-driven development, cité au chapitre 08.
+
+- id: cursor-changelog
+  nom: Cursor — changelog
+  url: https://cursor.com/changelog
+  type: page
+  categorie: changelog
+  confiance: officiel
+  justification: Principal outil concurrent, pour le panorama (chapitre 15).
+
+- id: willison-coding-agents
+  nom: Simon Willison — coding agents
+  url: https://simonwillison.net/tags/coding-agents.atom
+  type: atom
+  categorie: praticien
+  confiance: pratique
+  justification: Praticien de référence ; agrège et commente rapidement les retours d'expérience.
+
+- id: martin-fowler
+  nom: martinfowler.com (dont Böckeler, « Exploring Gen AI »)
+  url: https://martinfowler.com/feed.atom
+  type: atom
+  categorie: praticien
+  confiance: pratique
+  justification: Analyses de fond (spec-driven development, harnais) régulièrement citées.
+
+- id: thoughtworks-radar
+  nom: Thoughtworks Technology Radar
+  url: https://www.thoughtworks.com/radar
+  type: page
+  categorie: praticien
+  confiance: pratique
+  justification: Positionnement semestriel des techniques (Adopt, Trial, Assess, Caution).
+
+- id: metr
+  nom: METR — recherche
+  url: https://metr.org/feed.xml
+  type: rss
+  categorie: recherche
+  confiance: pratique
+  justification: Seules études contrôlées de productivité citées (chapitre 14).
+
+- id: kent-beck
+  nom: Kent Beck — newsletter
+  url: https://newsletter.kentbeck.com/feed
+  type: rss
+  categorie: praticien
+  confiance: pratique
+  justification: TDD avec agents (« augmented coding »), cité au chapitre 08.
+
+- id: breunig
+  nom: Drew Breunig
+  url: https://www.dbreunig.com/feed.xml
+  type: rss
+  categorie: praticien
+  confiance: pratique
+  justification: Ingénierie du contexte, modes de défaillance (chapitre 02).
+
+- id: owasp-genai
+  nom: OWASP GenAI Security Project
+  url: https://genai.owasp.org/feed/
+  type: rss
+  categorie: securite
+  confiance: pratique
+  justification: Référentiels de risques agentiques (chapitre 10).
+
+- id: hacker-news
+  nom: Hacker News — agents de code (100 points ou plus)
+  url: https://hn.algolia.com/api/v1/search?query=claude%20code&tags=story&numericFilters=points%3E%3D100,created_at_i%3E{depuis_ts}
+  type: hn
+  categorie: agregateur
+  confiance: emergent
+  justification: Signal communautaire filtré par la popularité ; jamais cité seul dans la base.
+
+- id: github-tendances
+  nom: GitHub — dépôts récents populaires sur les agents de code
+  url: https://api.github.com/search/repositories?q=topic:claude-code+created:%3E{depuis}&sort=stars&order=desc&per_page=10
+  type: github
+  categorie: agregateur
+  confiance: emergent
+  justification: Détecte outils et pratiques qui émergent dans l'écosystème ; à confirmer par une source primaire.
