@@ -62,9 +62,11 @@ class Collecter(unittest.TestCase):
 
     def test_marquer_purge(self):
         etat = {"vus": {"https://vieux": "2026-01-01"}}
-        collecte = {"candidats": [{"url": "https://neuf"}], "pages_modifiees": []}
+        collecte = {"candidats": [{"url": "https://neuf", "date": "2026-11-26"}, {"url": "https://lien-de-page", "date": None}], "pages_modifiees": []}
         nouvel_etat = collecter.marquer(etat, collecte, datetime(2026, 11, 27, tzinfo=timezone.utc))
-        self.assertEqual(nouvel_etat["vus"], {"https://neuf": "2026-11-27"})
+        self.assertEqual(nouvel_etat["vus"], {"https://lien-de-page": "permanent", "https://neuf": "2026-11-27"})
+        plus_tard = collecter.marquer(nouvel_etat, {"candidats": [], "pages_modifiees": []}, datetime(2027, 6, 1, tzinfo=timezone.utc))
+        self.assertEqual(plus_tard["vus"], {"https://lien-de-page": "permanent"})
         self.assertEqual(nouvel_etat["derniere_execution"], "2026-11-27")
 
 

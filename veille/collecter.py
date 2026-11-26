@@ -32,6 +32,7 @@ EXTRAIT = 300
 MAX_PAR_SOURCE = 10
 RETENTION_JOURS = 90
 FENETRE_INITIALE_JOURS = 14
+PERMANENT = "permanent"
 ATOM = "{http://www.w3.org/2005/Atom}"
 
 
@@ -103,7 +104,7 @@ def lire_page(contenu: bytes, url: str, motif_liens: str | None) -> tuple[str, l
     liens = []
     if motif_liens:
         vus = set()
-        for href, libelle in re.findall(r'<a\b[^>]*href="([^"#]+)"[^>]*>(.*?)</a>', texte, re.DOTALL | re.IGNORECASE):
+        for href, libelle in re.findall(r'<a\b[^>]{0,500}href="([^"#]{1,500})"[^>]{0,500}>(.{0,500}?)</a>', texte, re.DOTALL | re.IGNORECASE):
             absolu = urljoin(url, href)
             if re.search(motif_liens, absolu) and absolu not in vus:
                 vus.add(absolu)
@@ -189,12 +190,14 @@ def collecter(sources: list[dict], etat: dict, depuis: datetime, telecharger=tel
 def marquer(etat: dict, collecte: dict, maintenant: datetime) -> dict:
     """Enregistre les candidats comme vus et les nouvelles empreintes ; purge au-delà de la rétention."""
     aujourd_hui = maintenant.date().isoformat()
-    vus = {**etat.get("vus", {}), **{c["url"]: aujourd_hui for c in collecte["candidats"]}}
+    # Un élément sans date (lien relevé sur une page) n'est jamais purgé : il reste affiché sur la page
+    # et reviendrait comme candidat après la rétention.
+    vus = {**etat.get("vus", {}), **{c["url"]: aujourd_hui if c.get("date") else PERMANENT for c in collecte["candidats"]}}
     limite = (maintenant - timedelta(days=RETENTION_JOURS)).date().isoformat()
     empreintes = {**etat.get("empreintes", {}), **{p["source"]: p["empreinte"] for p in collecte["pages_modifiees"]}}
     return {
         "derniere_execution": aujourd_hui,
-        "vus": {url: jour for url, jour in sorted(vus.items()) if jour >= limite},
+        "vus": {url: jour for url, jour in sorted(vus.items()) if jour == PERMANENT or jour >= limite},
         "empreintes": dict(sorted(empreintes.items())),
     }
 
