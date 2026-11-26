@@ -42,3 +42,16 @@ jobs:
           for p in plugins/*/; do
             npx -y @anthropic-ai/claude-code plugin validate --strict "$p"
           done
+
+  plugins:
+    name: Tests des hooks et conformité des skills
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.x"
+      - name: Tests des hooks
+        run: python -m unittest discover -s plugins/garde-fous/tests -v
+      - name: Format des skills (ADR-003)
+        run: python .github/scripts/verifier_skills.py
