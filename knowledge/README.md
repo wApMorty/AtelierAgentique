@@ -14,7 +14,7 @@ Ordre de lecture conseillé. Les liens apparaissent à mesure que les chapitres 
 | 08 | [Workflows de développement](08-workflows-developpement.md) | Choisir et pratiquer un workflow : spec, plan, TDD, revue | Brouillon |
 | 09 | [Vérification et évaluation](09-verification-et-evaluation.md) | Produire des preuves : tests, revue indépendante, évaluation d'agents | Brouillon |
 | 10 | [Sécurité](10-securite.md) | Prompt injection, permissions, sandbox, secrets, chaîne d'approvisionnement | Brouillon |
-| 11 | Coûts, quotas et modèles | Arbitrer modèle, effort, subagents et cache selon le budget | À rédiger |
+| 11 | [Coûts, quotas et modèles](11-couts-quotas-modeles.md) | Arbitrer modèle, effort, subagents et cache selon le budget | Brouillon |
 | 12 | Exécution autonome | Conditions de sûreté des exécutions sans surveillance : headless, planifiées, CI | À rédiger |
 | 13 | Portabilité et standards | AGENTS.md, Agent Skills, correspondances entre Claude Code, Copilot et Codex | À rédiger |
 | 14 | Équipe et adoption | Revue selon le risque, preuves de productivité, conduite du changement | À rédiger |
