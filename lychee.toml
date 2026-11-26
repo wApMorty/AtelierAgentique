@@ -4,5 +4,3 @@
 accept = ["200..=299", "403", "429"]
 max_retries = 2
 exclude_path = ["node_modules"]
-# Liens vers le dépôt lui-même : invalides tant qu'il n'est pas publié.
-exclude = ["^https://github\.com/wApMorty/AtelierAgentique"]
