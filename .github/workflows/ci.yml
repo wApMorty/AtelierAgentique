@@ -76,3 +76,26 @@ jobs:
             echo "$hors"
             exit 1
           fi
+
+  labs:
+    name: Solutions des labs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.x"
+      - uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+      - name: Lab 01 — tests d'acceptation sur la solution
+        working-directory: labs/01-workflow-bout-en-bout/solution
+        run: python -m unittest test_acceptation -v
+      - name: Lab 02 — tests sur la solution
+        env:
+          LAB02_HOOK: labs/02-hook-garde-fou/solution/hook.py
+        run: python -m unittest discover -s labs/02-hook-garde-fou/tests -v
+      - name: Lab 03 — tests sur la solution
+        env:
+          LAB03_SKILL: labs/03-conception-skill/solution/composant-angular
+        run: node --test labs/03-conception-skill/tests/
