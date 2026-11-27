@@ -5,7 +5,7 @@
 
 ## Contexte
 
-Claude Code est l'outil principal, mais le système doit rester réutilisable sous GitHub Copilot et OpenAI Codex. Deux standards ouverts existent : **AGENTS.md**, désormais porté par l'Agentic AI Foundation (Linux Foundation) [1], et **Agent Skills**, publié en standard ouvert par Anthropic [2]. Le reste (hooks, subagents, plugins) existe chez les trois éditeurs, mais sous des formats incompatibles.
+Claude Code est l'outil principal, mais le système doit rester réutilisable sous GitHub Copilot et OpenAI Codex. Deux standards ouverts existent : **AGENTS.md**, désormais porté par l'Agentic AI Foundation (Linux Foundation) [1], et **Agent Skills**, publié en standard ouvert par Anthropic [2] (mise à jour du 2026-11-28 : projet de LF Projects, LLC depuis le 04/11/2026 [15], ce qui renforce le choix de ce format). Le reste (hooks, subagents, plugins) existe chez les trois éditeurs, mais sous des formats incompatibles.
 
 ## État de la prise en charge (au 2026-11-26)
 
@@ -55,3 +55,4 @@ Consultées le 2026-11-26. Toutes de niveau **officiel** sauf mention.
 12. Anthropic, *Hooks reference*. <https://code.claude.com/docs/en/hooks>
 13. OpenAI, *Hooks*. <https://learn.chatgpt.com/docs/hooks>
 14. Anthropic, *Plugin marketplaces*. <https://code.claude.com/docs/en/plugin-marketplaces>
+15. Agent Skills, *Agent Skills Governance*, adopté le 04/11/2026, consulté le 2026-11-28. <https://github.com/agentskills/agentskills/blob/main/GOVERNANCE.md>
