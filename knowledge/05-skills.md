@@ -2,7 +2,7 @@
 chapitre: 05
 titre: Skills
 statut: brouillon
-derniere_revision: 2026-11-27
+derniere_revision: 2026-11-28
 ---
 
 # 05 — Skills
@@ -89,7 +89,7 @@ Un script fourni avec un skill s'exécute sans que son code entre dans le contex
 
 ## État du débat
 
-- **Standard ouvert, gouvernance en construction.** La spécification est développée en ouvert sur GitHub [2] ; aucune fondation n'est nommée sur les pages consultées, contrairement à AGENTS.md et MCP. **Émergent.**
+- **Gouvernance désormais neutre.** Le document de gouvernance adopté le 04/11/2026 fait du projet « Agent Skills a Series of LF Projects, LLC », la structure de la Linux Foundation qui héberge déjà MCP, avec un comité technique de mainteneurs nommés à titre individuel et la règle « No seats are reserved for specific companies » [9]. Les commits correspondants sont intitulés « AAIF Donation », ce qui le rattache à l'Agentic AI Foundation, comme AGENTS.md [9]. Le format n'est donc plus porté par le seul éditeur qui l'a créé. **Daté.**
 - **Skills ou serveurs MCP ?** La révision 2026-07-28 de MCP introduit une extension « skills over MCP » [8] : la frontière entre les deux mécanismes de distribution reste à stabiliser. **Émergent.**
 
 ## Dans ce dépôt
@@ -109,3 +109,4 @@ Consultées le 2026-11-26 ou le 2026-11-27.
 6. **[O]** OpenAI, *Codex — Best practices*. <https://learn.chatgpt.com/guides/best-practices.md>
 7. **[O]** Anthropic, *Plugin marketplaces*. <https://code.claude.com/docs/en/plugin-marketplaces>
 8. **[O]** Model Context Protocol, *Changelog* de la révision 2026-07-28. <https://modelcontextprotocol.io/specification/2026-07-28/changelog>
+9. **[O]** Agent Skills, *Agent Skills Governance*, adopté le 04/11/2026, et commits « AAIF Donation » du même jour, consultés le 2026-11-28. <https://github.com/agentskills/agentskills/blob/main/GOVERNANCE.md>

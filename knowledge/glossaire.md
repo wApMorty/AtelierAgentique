@@ -6,7 +6,7 @@ Définitions courtes ; le chapitre indiqué détaille et source chaque notion.
 |---|---|---|
 | AGENTS.md | Fichier Markdown d'instructions pour agents de code, standard ouvert porté par l'Agentic AI Foundation | [13](13-portabilite-et-standards.md) |
 | Agent | Système où un modèle dirige lui-même son processus et l'usage de ses outils, par opposition à un workflow à chemins prédéfinis | [01](01-fondamentaux-boucle-agentique.md) |
-| Agent Skills | Format ouvert de skills (`SKILL.md` et ressources) lisible par plusieurs outils | [05](05-skills.md) |
+| Agent Skills | Format ouvert de skills (`SKILL.md` et ressources) lisible par plusieurs outils, gouverné au sein de la Linux Foundation | [05](05-skills.md) |
 | Bac à sable (*sandbox*) | Isolation imposée par le système d'exploitation aux commandes de l'agent (fichiers, réseau) | [10](10-securite.md) |
 | Boucle agentique | Cycle raisonnement, action, observation, répété jusqu'à la fin de la tâche | [01](01-fondamentaux-boucle-agentique.md) |
 | Cache de préfixe | Réutilisation du calcul sur un début de requête identique ; réduit coût et latence | [02](02-ingenierie-du-contexte.md), [11](11-couts-quotas-modeles.md) |

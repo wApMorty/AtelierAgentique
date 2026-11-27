@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Chaque semaine, après la veille : détecte les liens morts et les régressions dues aux outils
+  # (version de Claude Code, actions) même sans changement du dépôt.
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
 
 permissions:
   contents: read

@@ -2,7 +2,7 @@
 chapitre: 13
 titre: Portabilité et standards
 statut: brouillon
-derniere_revision: 2026-11-27
+derniere_revision: 2026-11-28
 ---
 
 # 13 — Portabilité et standards
@@ -22,7 +22,7 @@ derniere_revision: 2026-11-27
 
 **AGENTS.md.** Fichier Markdown sans champ obligatoire, placé à la racine et éventuellement dans des sous-répertoires, que les agents de code lisent comme instructions ; « The closest AGENTS.md to the edited file wins » [1]. Il est porté par l'Agentic AI Foundation sous l'égide de la Linux Foundation [1].
 
-**Agent Skills.** Format de skill publié en standard ouvert par Anthropic ([chapitre 05](05-skills.md)) [2].
+**Agent Skills.** Format de skill publié en standard ouvert par Anthropic ([chapitre 05](05-skills.md)) [2], devenu le 04/11/2026 un projet de LF Projects, LLC (Linux Foundation) [15].
 
 **MCP.** Protocole de connexion aux outils, hébergé par LF Projects, LLC ([chapitre 04](04-outils-et-mcp.md)) [3].
 
@@ -69,7 +69,7 @@ derniere_revision: 2026-11-27
 
 ## État du débat
 
-- **Gouvernance** : AGENTS.md et MCP relèvent désormais de structures de la Linux Foundation [1], [3] ; aucune fondation n'est nommée pour Agent Skills dans les pages consultées [2]. **Émergent.**
+- **Gouvernance** : les trois standards relèvent désormais de structures de la Linux Foundation : AGENTS.md via l'Agentic AI Foundation [1], MCP et Agent Skills comme projets de LF Projects, LLC [3], [15], ce dernier depuis le 04/11/2026 dans le cadre d'une donation présentée comme destinée à l'Agentic AI Foundation [15]. Aucun des trois n'est plus gouverné par un seul éditeur. **Daté.**
 - **Convergence des formats non standardisés** : hooks et agents personnalisés existent chez les trois éditeurs avec des événements voisins mais des formats distincts ; aucune initiative de standardisation n'a été identifiée dans les sources consultées.
 
 ## Dans ce dépôt
@@ -95,3 +95,4 @@ Consultées le 2026-11-26 ou le 2026-11-27.
 12. **[O]** OpenAI, *Subagents* (Codex). <https://learn.chatgpt.com/docs/agent-configuration/subagents>
 13. **[O]** OpenAI, *Hooks* (Codex). <https://learn.chatgpt.com/docs/hooks>
 14. **[O]** Anthropic, *Plugin marketplaces*. <https://code.claude.com/docs/en/plugin-marketplaces>
+15. **[O]** Agent Skills, *Agent Skills Governance*, adopté le 04/11/2026, et commits « AAIF Donation » du même jour, consultés le 2026-11-28. <https://github.com/agentskills/agentskills/blob/main/GOVERNANCE.md>
