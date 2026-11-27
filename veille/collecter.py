@@ -140,6 +140,32 @@ def lire_github(contenu: bytes) -> list[dict]:
     ]
 
 
+def lire_github_api(contenu: bytes) -> list[dict]:
+    """Versions (/releases) ou commits (/commits) d'un dépôt, via l'API REST de GitHub.
+    Les flux .atom de github.com sont refusés depuis les sessions cloud ; api.github.com ne l'est pas."""
+    donnees = json.loads(contenu)
+    elements = []
+    for d in donnees if isinstance(donnees, list) else [donnees]:  # /releases/latest renvoie un objet
+        if "tag_name" in d:
+            if d.get("prerelease") or d.get("draft"):
+                continue
+            elements.append({
+                "titre": d.get("name") or d["tag_name"],
+                "url": d.get("html_url") or "",
+                "date": d.get("published_at"),
+                "extrait": _texte(d.get("body")),
+            })
+        elif "commit" in d:
+            message = d["commit"].get("message") or ""
+            elements.append({
+                "titre": message.splitlines()[0][:200] if message else "",
+                "url": d.get("html_url") or "",
+                "date": (d["commit"].get("committer") or {}).get("date"),
+                "extrait": _texte(message),
+            })
+    return elements
+
+
 def telecharger(url: str) -> bytes:
     requete = urllib.request.Request(url, headers={"User-Agent": "veille-atelier-agentique/1.0"})
     with urllib.request.urlopen(requete, timeout=20) as reponse:
@@ -160,6 +186,8 @@ def collecter(sources: list[dict], etat: dict, depuis: datetime, telecharger=tel
                 elements = lire_hn(contenu)
             elif source["type"] == "github":
                 elements = lire_github(contenu)
+            elif source["type"] == "github-api":
+                elements = lire_github_api(contenu)
             else:
                 empreinte, elements = lire_page(contenu, source["url"], source.get("liens"))
                 if not source.get("liens") and empreintes.get(source["id"]) != empreinte:

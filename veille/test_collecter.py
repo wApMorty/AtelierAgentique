@@ -1,5 +1,6 @@
 """Tests de veille/collecter.py, sans réseau. Lancement : python -m unittest veille/test_collecter.py"""
 
+import json
 import sys
 import unittest
 from datetime import datetime, timezone
@@ -53,6 +54,19 @@ class Collecter(unittest.TestCase):
         etat = collecter.marquer({}, resultat, DEPUIS)
         resultat = collecter.collecter([sans_liens], etat, DEPUIS, telecharger=lambda url: PAGE)
         self.assertEqual(resultat["pages_modifiees"], [])
+
+    def test_api_github_versions_et_commits(self):
+        versions = json.dumps([
+            {"tag_name": "v2", "name": "v2", "html_url": "https://g/v2", "published_at": "2026-11-20T00:00:00Z", "prerelease": False, "body": "Nouveau"},
+            {"tag_name": "v3-alpha", "html_url": "https://g/v3", "published_at": "2026-11-21T00:00:00Z", "prerelease": True},
+        ]).encode()
+        commits = json.dumps([
+            {"html_url": "https://g/c1", "commit": {"message": "Ajoute la gouvernance\n\nDétail", "committer": {"date": "2026-11-22T00:00:00Z"}}},
+        ]).encode()
+        pages = {"https://api/versions": versions, "https://api/commits": commits}
+        sources = [{"id": "v", "url": "https://api/versions", "type": "github-api"}, {"id": "c", "url": "https://api/commits", "type": "github-api"}]
+        resultat = collecter.collecter(sources, {}, DEPUIS, telecharger=pages.__getitem__)
+        self.assertEqual([(c["titre"], c["url"]) for c in resultat["candidats"]], [("v2", "https://g/v2"), ("Ajoute la gouvernance", "https://g/c1")])
 
     def test_erreur_isolee(self):
         def panne(url):
