@@ -53,7 +53,7 @@ L'OWASP a publié en décembre 2025 un Top 10 dédié aux applications agentique
 | **Modes** | Manuel (demande avant d'agir), `acceptEdits`, `plan`, `auto` (un classifieur revoit les actions), `dontAsk` (refuse tout ce qui demanderait), `bypassPermissions` [7] | `auto` « reduces permission prompts but does not guarantee safety » [7] ; `bypassPermissions` n'offre aucune protection |
 | **Bac à sable** du système | Isolation du shell : écriture limitée au projet et au temporaire, réseau sortant par un proxy filtré par domaine [8] | Ne couvre que les commandes shell : « The sandbox covers shell commands only » ; lecture permise sur la majeure partie de la machine par défaut [8] |
 | **Hooks** | Contrôle programmable à chaque événement ([chapitre 07](07-hooks-et-garde-fous.md)) | Échec ouvert par défaut ; filtrage textuel contournable |
-| **Confiance du dossier** | Dialogue à l'ouverture d'un dossier inconnu ; approbation des serveurs de `.mcp.json` [2] | Ni l'un ni l'autre ne s'affiche en mode non interactif (`-p`) [2] |
+| **Confiance du dossier** | Dialogue à l'ouverture d'un dossier inconnu, qui indique depuis la v2.1.329 où sont déclarés les hooks du dossier [12] ; approbation des serveurs de `.mcp.json` [2] | Ni l'un ni l'autre ne s'affiche en mode non interactif (`-p`) [2] |
 
 Points de détail qui comptent :
 
@@ -63,9 +63,11 @@ Points de détail qui comptent :
 - sous Windows natif, le bac à sable n'existe pas ; la documentation recommande WSL2 [8] ;
 - WebFetch passe par un appel de modèle séparé et ne renvoie à l'agent qu'un résumé [2].
 
+**Alternative : le bac à sable externe.** Willison et Prime Radiant décrivent un schéma où le code exécuté par l'agent tourne dans un bac à sable dédié tandis que l'agent reste à l'extérieur ; trois implémentations (v86 en WebAssembly, Apple Containers, QEMU via Quicksand) exposent la même API locale, avec un proxy HTTP en liste blanche et une substitution des identifiants qui permet des appels authentifiés « without sharing a secret with the agent » [13]. L'auteur y voit un terrain d'expérimentation, non une solution éprouvée. **Émergent.**
+
 ### Secrets
 
-Un agent lit ce que l'utilisateur peut lire. Le bac à sable autorise par défaut la lecture de `~/.ssh` et `~/.aws/credentials` [8]. Protections complémentaires : règles `deny` sur la lecture des fichiers de secrets (exemple de l'éditeur : `Read(./.env)`) [9], hook qui refuse l'écriture de motifs de clés ([chapitre 07](07-hooks-et-garde-fous.md)), secrets hors du dépôt, et, pour les exécutions en CI, secrets dans le gestionnaire de la plateforme : « Never commit API keys or OAuth tokens directly to your repository » [10].
+Un agent lit ce que l'utilisateur peut lire. Pour ne pas exposer de jeton dans la ligne de commande, `claude mcp add-json <nom> -` lit la configuration d'un serveur MCP sur l'entrée standard (v2.1.327, 17/11/2026) [12]. Le bac à sable autorise par défaut la lecture de `~/.ssh` et `~/.aws/credentials` [8]. Protections complémentaires : règles `deny` sur la lecture des fichiers de secrets (exemple de l'éditeur : `Read(./.env)`) [9], hook qui refuse l'écriture de motifs de clés ([chapitre 07](07-hooks-et-garde-fous.md)), secrets hors du dépôt, et, pour les exécutions en CI, secrets dans le gestionnaire de la plateforme : « Never commit API keys or OAuth tokens directly to your repository » [10].
 
 ### Chaîne d'approvisionnement
 
@@ -115,3 +117,5 @@ Consultées le 2026-11-26 ou le 2026-11-27.
 9. **[O]** Anthropic, *Best practices for Claude Code*. <https://code.claude.com/docs/en/best-practices>
 10. **[O]** Anthropic, *Claude Code GitHub Actions*. <https://code.claude.com/docs/en/github-actions>
 11. **[O]** Model Context Protocol, *Security Best Practices*. <https://modelcontextprotocol.io/specification/latest/basic/security_best_practices>
+12. **[O]** Anthropic, *Changelog* (Claude Code), versions 2.1.327 et 2.1.329, 17 et 19/11/2026, consulté le 2026-11-27. <https://code.claude.com/docs/en/changelog>
+13. **[P]** Willison, *External sandboxes for coding agents*, 17/11/2026, consulté le 2026-11-27 ; billet de lien vers Prime Radiant, avec qui l'auteur a travaillé (article source non lu). <https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/>
