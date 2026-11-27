@@ -54,6 +54,8 @@ Un test vert ne prouve que ce qu'il vérifie. Deux risques sont propres aux agen
 
 Le *mutation testing*, qui vérifie que les tests échouent quand le code est altéré, figure dans l'anneau *Adopt* du Radar de Thoughtworks (vol. 35) [8] : c'est un capteur calculatoire de la qualité des tests eux-mêmes.
 
+L'équipe Claude Code formule le principe d'indépendance du capteur : « If a change can modify the check that judges it, the check is broken » ; ses règles de revue sont donc lues sur la branche de base, jamais dans la PR [12]. Elle privilégie les tests de bout en bout, plus difficiles à tromper (« either the whole feature works or it doesn't »), complétés par des tests de propriétés et, lors des migrations, des tests différentiels entre ancien et nouveau système [12]. Un test instable ne peut être ni ignoré, ni temporisé, ni relancé jusqu'au vert ; faute de cause trouvée, l'agent le supprime et consigne pourquoi [12].
+
 ### Organiser la revue automatique
 
 L'équipe Claude Code décrit un dispositif complet [4] :
@@ -62,7 +64,8 @@ L'équipe Claude Code décrit un dispositif complet [4] :
 - les consignes de revue vivent dans CLAUDE.md et un fichier `REVIEW.md` ;
 - la revue s'arrête après trois tours sans convergence ;
 - des agents de revue parallèles voient leurs constats soumis à des vérificateurs qui votent ;
-- une évaluation construite à partir d'incidents passés mesure la revue elle-même.
+- une évaluation construite à partir d'incidents passés mesure la revue elle-même ;
+- un contrôle qui échoue encore après trois tours fait intervenir un humain, et une nouvelle barrière démarre en mode observation avant d'être imposée [12].
 
 Elle rapporte un doublement des PR fusionnées et une baisse de plus de 40 % de la part de retours arrière sur la période [4] ; ces chiffres sont auto-déclarés. Elle note aussi qu'environ 59 % des problèmes signalés concernaient du code antérieur à la première passe de revue [4] : un relecteur automatique sans périmètre déborde sur l'existant.
 
@@ -124,3 +127,4 @@ Consultées le 2026-11-26 ou le 2026-11-27.
 9. **[O]** Aizawa (Anthropic), *Writing effective tools for AI agents*, 11/09/2025. <https://www.anthropic.com/engineering/writing-tools-for-agents>
 10. **[P]** SWE-bench, *SWE-bench Verified*. <https://www.swebench.com/verified.html>
 11. **[O]** Lopopolo (OpenAI), *Harness engineering: leveraging Codex in an agent-first world*, 11/02/2026. <https://openai.com/index/harness-engineering/>
+12. **[O]** Osmani (équipe Claude Code), *How the Claude Code team thinks about verification*, 16/11/2026, consulté le 2026-11-27. <https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/>

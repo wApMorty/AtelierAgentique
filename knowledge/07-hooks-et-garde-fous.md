@@ -40,6 +40,8 @@ Claude Code expose plus d'une trentaine d'événements [1] **(Daté)**. Les plus
 | `UserPromptSubmit` | À la soumission d'un prompt | Ajouter du contexte, filtrer |
 | `SessionStart` | Démarrage, reprise, après compaction | Injecter un état ([chapitre 02](02-ingenierie-du-contexte.md)) |
 | `PreCompact` / `PostCompact` | Autour d'une compaction | Sauvegarder ou réinjecter |
+| `PreSkillShellCommand` | Au chargement d'un skill ou d'une commande | Refuser les commandes shell en ligne qu'il contient (ajouté en v2.1.332, 25/11/2026) [8] |
+| `PermissionDenied` | Après un refus de permission | `retry: true` invite l'agent à refaire l'appel refusé, « only if you asked for that call » depuis la v2.1.331 [8] |
 
 ### Configuration
 
@@ -76,7 +78,8 @@ En JSON, `PreToolUse` peut renvoyer `permissionDecision` (`allow`, `deny`, `ask`
 
 ### Limites à connaître
 
-- **Échec ouvert par défaut** : un hook qui plante ou dépasse son délai ne bloque rien, sauf `onFailure: "block"` [1]. Un garde-fou de sécurité doit le préciser.
+- **Échec ouvert par défaut** : un hook qui plante ou dépasse son délai ne bloque rien, sauf `onFailure: "block"` [1]. Un garde-fou de sécurité doit le préciser. Depuis la v2.1.328 (19/11/2026), l'option vaut aussi pour les hooks `mcp_tool` ; depuis la v2.1.329, un `PreToolUse` en erreur ne refuse plus l'appel d'outil d'un script en Code Mode, comme hors de ce mode, si bien que `onFailure: "block"` y devient également nécessaire [8] **(Daté)**.
+- **Code Mode** : les hooks `UserPromptSubmit` ne s'exécutent plus sur la sortie des scripts ; pour l'expurger, l'éditeur renvoie à un `PostToolUse` avec `updatedToolOutput` (v2.1.328) [8] **(Daté)**.
 - **Délais** : 600 secondes par défaut pour un hook `command`, moins pour certains événements [1] **(Daté)**.
 - **Plafond sur `Stop`** : après huit blocages consécutifs sans appel d'outil, l'arrêt est accordé quand même [2] **(Daté)**. Un hook `Stop` ne peut donc pas boucler indéfiniment.
 - **Le filtre par texte de commande est contournable** : un garde-fou qui cherche `rm -rf` dans une chaîne ne voit pas `find . -delete` ni un script qui supprime. Les règles `deny` de Claude Code ont la même limite : `Bash(curl *)` n'arrête pas `sh -c 'curl …'` [3]. Pour une garantie réelle, le bac à sable ([chapitre 10](10-securite.md)).
@@ -131,3 +134,4 @@ Consultées le 2026-11-26 ou le 2026-11-27.
 5. **[E]** Willison, notes du tag *coding-agents* (citation de Geoffrey Huntley, 13/10/2026). <https://simonwillison.net/tags/coding-agents/>
 6. **[O]** GitHub, *Customization cheat sheet*. <https://docs.github.com/en/copilot/reference/customization-cheat-sheet>
 7. **[O]** OpenAI, *Hooks* (Codex). <https://learn.chatgpt.com/docs/hooks>
+8. **[O]** Anthropic, *Changelog* (Claude Code), versions 2.1.328 à 2.1.332, 19 au 25/11/2026, consulté le 2026-11-27. <https://code.claude.com/docs/en/changelog>
