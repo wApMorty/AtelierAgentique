@@ -1,7 +1,7 @@
 ---
 chapitre: 02
 titre: Ingénierie du contexte
-statut: brouillon
+statut: relu
 derniere_revision: 2026-11-27
 ---
 

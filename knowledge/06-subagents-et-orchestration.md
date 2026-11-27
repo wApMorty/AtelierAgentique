@@ -1,7 +1,7 @@
 ---
 chapitre: 06
 titre: Subagents et orchestration
-statut: brouillon
+statut: relu
 derniere_revision: 2026-11-27
 ---
 

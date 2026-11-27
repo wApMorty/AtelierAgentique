@@ -1,7 +1,7 @@
 ---
 chapitre: 11
 titre: Coûts, quotas et modèles
-statut: brouillon
+statut: relu
 derniere_revision: 2026-11-27
 ---
 

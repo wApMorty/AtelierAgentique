@@ -1,7 +1,7 @@
 ---
 chapitre: 07
 titre: Hooks et garde-fous
-statut: brouillon
+statut: relu
 derniere_revision: 2026-11-27
 ---
 

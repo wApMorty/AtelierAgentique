@@ -1,7 +1,7 @@
 ---
 chapitre: 09
 titre: Vérification et évaluation
-statut: brouillon
+statut: relu
 derniere_revision: 2026-11-27
 ---
 

@@ -1,7 +1,7 @@
 ---
 chapitre: 01
 titre: Fondamentaux et boucle agentique
-statut: brouillon
+statut: relu
 derniere_revision: 2026-11-27
 ---
 
