@@ -58,8 +58,10 @@ Architecture, sécurité et budget : `docs/decisions/ADR-004-architecture-veille
    - **planifié** : comme en local, puis pousse la branche et ouvre la PR par l'API REST (le proxy des sessions cloud refuse `gh pr create`) :
 
      ```sh
-     gh api repos/{owner}/{repo}/pulls -f title="Veille AAAA-Sxx" -f head="veille/AAAA-Sxx" -f base=main -F body=@veille/digests/AAAA-Sxx.md
+     gh api repos/{owner}/{repo}/pulls -f title="<titre>" -f head="veille/AAAA-Sxx" -f base=main -F body=@veille/digests/AAAA-Sxx.md
      ```
+
+     La PR est fusionnée en squash : son titre devient la première ligne du commit sur `main` et doit se lire seul. Format : `docs(veille): digest AAAA-Sxx — <deux à quatre nouveautés principales> (ch. NN, NN)`, par exemple `docs(veille): digest 2026-S48 — hook PreSkillShellCommand, bac à sable externe (ch. 07, 10)`. Sans nouveauté retenue : `docs(veille): digest AAAA-Sxx — aucune nouveauté retenue`.
 
 ## Gabarit du digest
 
