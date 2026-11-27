@@ -1,7 +1,7 @@
 ---
 chapitre: 10
 titre: Sécurité
-statut: brouillon
+statut: relu
 derniere_revision: 2026-11-27
 ---
 

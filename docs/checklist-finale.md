@@ -26,16 +26,14 @@
 
 ## Reste à faire
 
-- **Publier** : créer le dépôt GitHub `wApMorty/AtelierAgentique`, pousser `main`, vérifier la CI distante. La vérification des liens par lychee n'a tourné qu'en substitut local (curl).
-- **Protéger `main`** avec un ruleset dont le contrôle « Périmètre des PR de veille » est obligatoire (`veille/scheduled-task.md`, étape 1).
-- **Mettre en place la veille** : environnement cloud, tâche planifiée, secret `DISCORD_WEBHOOK_URL`, première exécution, mesure du quota.
+Mise à jour du 2026-11-27 : dépôt publié, `main` protégé par un ruleset (PR et contrôle « Périmètre des PR de veille » obligatoires), CI distante verte avec lychee, tâche de veille planifiée chaque lundi, secret `DISCORD_WEBHOOK_URL` en place, base relue.
+
+- **Mesurer le quota** consommé par une exécution planifiée de la veille, pour ajuster les plafonds de l'ADR-004.
 - **Essai réel des plugins** dans une session Claude Code : seuls l'installation et les hooks hors agent ont été testés, pas un déroulé complet du workflow ni le déclenchement des hooks en session.
-- **Points non vérifiés**, signalés dans les documents : déclenchement de la notification par une PR de l'application Claude, application de la liste blanche aux tâches planifiées, traitement des clés de frontmatter non standard par Copilot et Codex, liste détaillée du Top 10 OWASP agentique.
+- **Points non vérifiés**, signalés dans les documents : déclenchement de la notification par une PR ouverte par l'application Claude (la PR #2 a été ouverte sous le compte du propriétaire), application de la liste blanche aux tâches planifiées, traitement des clés de frontmatter non standard par Copilot et Codex, liste détaillée du Top 10 OWASP agentique.
 - **Échecs TLS locaux** : sept sources n'ont pas pu être lues depuis Python sous Windows ; le comportement attendu dans le cloud est à confirmer.
-- **Relecture de la base** : les chapitres sont au statut « Brouillon ».
 
-## Trois prochaines actions recommandées
+## Prochaines actions recommandées
 
-1. **Publier le dépôt et protéger `main`** : c'est le préalable à la CI distante, à la veille et à l'installation sur vos autres machines.
-2. **Dérouler le lab 01 vous-même** avec les deux plugins installés : c'est le test réel du workflow, des hooks et du relecteur, et la première démonstration pour une présentation interne.
-3. **Lancer la première veille planifiée** et mesurer sa consommation, pour ajuster les plafonds de l'ADR-004 avant de la laisser tourner chaque semaine.
+1. **Dérouler le lab 01 vous-même** avec les deux plugins installés : c'est le test réel du workflow, des hooks et du relecteur, et la première démonstration pour une présentation interne.
+2. **Relire la PR de la veille du lundi 2026-11-30** et noter sa consommation, pour ajuster les plafonds de l'ADR-004.

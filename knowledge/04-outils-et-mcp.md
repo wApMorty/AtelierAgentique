@@ -1,7 +1,7 @@
 ---
 chapitre: 04
 titre: Outils et MCP
-statut: brouillon
+statut: relu
 derniere_revision: 2026-11-27
 ---
 

@@ -1,7 +1,7 @@
 ---
 chapitre: 03
 titre: Prompting pour agents
-statut: brouillon
+statut: relu
 derniere_revision: 2026-11-27
 ---
 

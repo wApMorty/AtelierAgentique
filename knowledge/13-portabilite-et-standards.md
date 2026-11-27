@@ -1,7 +1,7 @@
 ---
 chapitre: 13
 titre: Portabilité et standards
-statut: brouillon
+statut: relu
 derniere_revision: 2026-11-28
 ---
 

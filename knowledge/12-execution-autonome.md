@@ -1,7 +1,7 @@
 ---
 chapitre: 12
 titre: Exécution autonome
-statut: brouillon
+statut: relu
 derniere_revision: 2026-11-27
 ---
 

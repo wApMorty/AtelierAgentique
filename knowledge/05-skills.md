@@ -1,7 +1,7 @@
 ---
 chapitre: 05
 titre: Skills
-statut: brouillon
+statut: relu
 derniere_revision: 2026-11-28
 ---
 

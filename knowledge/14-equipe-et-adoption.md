@@ -1,7 +1,7 @@
 ---
 chapitre: 14
 titre: Équipe et adoption
-statut: brouillon
+statut: relu
 derniere_revision: 2026-11-27
 ---
 
